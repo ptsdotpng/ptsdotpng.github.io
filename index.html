@@ -10,6 +10,10 @@
       margin: 0;
       padding: 0;
     }
+
+    ul {
+      list-style: none;
+    }
     /* #endregion */
     :root {
       --bg: #002b36;
@@ -27,7 +31,7 @@
     /* #region typo */
     html {
       font-family: 'Courier New', Courier, monospace;
-      background-color: var(--bg);
+      background-color: var(--c6);
       color: var(--fg);
     }
 
@@ -82,28 +86,130 @@
       margin-top: 1rem
     }
 
-    
+    .console {
+      border: 1px solid var(--fg);
+      background-color: var(--bg);
+      display: flex;
+      flex-direction: column;
+      margin: 1rem
+    }
+
+    .output {
+      height: 300px;
+      overflow: scroll;
+      display: flex;
+      flex-direction: column;
+      padding: 5px;
+    }
+
+    .ctnt {
+      flex-grow: 1;
+    }
+
+    #prompt {
+      background-color: rgba(0, 0, 0, 0);
+      border: 0;
+      border-top: 1px solid var(--fg);
+      color: var(--fg);
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 1rem;
+      padding: 5px;
+
+    }
+
+
+    .bar {
+      background-color: #000000;
+      border-bottom: 1px solid var(--fg);
+      text-align: center;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      padding: 5px 5px;
+    }
+
+    .title {
+      flex-grow: 1;
+      font-size: 1.2rem;
+    }
+
+    .btns {
+      font-size: 0.75rem;
+      letter-spacing: 0.2rem;
+    }
 
   </style>
 </head>
 <body>
-  <header>
-    <h1>pts.png</h1>
-  </header>
-  <h2>
-    twitch
-  </h2>
-  <p>
-    streaming on twitch - weekdays 6-8
-  </p>
-  <p>
-    streaming about:
-      - tech
-      - programming
-      - streaming:)
-  </p>
-  <p>
-    what is it about:
-  </p>
+  <div class="console">
+    <div class="bar">
+      <div class="btns">⬤⬤⬤</div>
+      <div class="title">cnsl</div>
+    </div>
+    <div id="output" class="output">   
+    </div>
+    <input id="prompt">
+  </div>
 </body>
+<script>
+  const cnt = `# ( ._.)
+welcome traveler.
+
+## what is this?
+this is my spot around these parts.
+
+## who are you?
+pts d. png. 
+the d is for dot. 
+nice to meet you
+
+## what are you doing here?
+i'm just building some small project. 
+having a little fun away from it all
+`
+
+  const output = document.getElementById("output")
+  const inpt = document.getElementById("prompt");
+  const ptr = 0;
+
+ 
+
+
+  const lolwat = (c) => {
+    const [hh, ...ps] = c.split("\n##")
+
+    const [h, ...t] = hh.split("\n")
+
+    const ppp = ps.map(s => {
+      const [prmpt, ..._] = s.split("\n")
+      return `<li>> ${prmpt}</li>`
+    })
+
+    return `
+      <h1>${h}</h1>
+      <div class="ctnt">
+        ${t.join(`<br/>`)}
+      </div>
+      <ul>
+        ${ppp.join("\n")}
+      </ul>
+    `;
+  }
+
+
+  const navTo = (prmpt) => {
+    console.log(prmpt)
+  }
+
+  output.innerHTML = lolwat(cnt)
+  inpt.focus()
+
+  inpt.onkeyup = (e) => {
+    if(e.key === "Enter") {
+      navTo(inpt.value)
+    }
+  }
+
+
+</script>
 </html>

@@ -18,3 +18,23 @@ pts.png's about page.
 - i want to try a few different projets. well more than a few. havaing an external force selecting one to focus on might be beneficial. it's not like having a boss or client, but it could be fun to have enough of an audience to have actual people want to have a certain project to continue.
 - there are a couple of fun things/project/concepts that i need to work out a bit more before trying them out, but they are related to streaming so... yeah, i need to actually stream to try them
 - because of teh pandemic/lockdowns/etc... i work from home. so have about 2hrs of commute i don't need to do. it'd be nice to have something positive to look back to. that i used this additional time for something more than just more tv/games/whatever i spend all my time on... so hard to tell when everythnig blurs together
+
+
+
+
+# writing it out
+it'll probably - hopefully help.
+so i'm trying to figure out what exactly to parse out, when, and to what format.
+
+i want to parse the given markdown in order to:
+- split out headers, and collect all of the to get a list of prompts
+- so i would start at the first one. and all the other headers become a list of propts/actions that the user can use - like questions in adventure games, rpgs, etc...
+- once a user gets to one level, the root text gets printed. 
+- and if there are lower lever headings  - theses become a nes prompt - unless at the highest level....
+lets not pormpt - but get all in one functino. esasier..?
+
+brain is a little mushy
+it would be fun to abuse the templating...
+
+- trying precommute stream...
+- going to change the strucutre. first get the whole things working, then figure out how to parse it from simple markdown
