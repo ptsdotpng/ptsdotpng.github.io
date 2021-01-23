@@ -52,6 +52,7 @@ const html = (strings, ...exprs) => {
 // #endregion
 
 //#region main
+
 // #region utils
 const getChoices = t => {
   return t.hasOwnProperty("children") 
@@ -152,3 +153,60 @@ const main = (d) => {
 
 // assumes it has the preparsed md -> data
 main(data);
+//#endregion
+
+//#region parser
+// regex is hard
+// lest jstu do it naively
+// expecting:
+// first line title
+// rest of text -> text
+// unless hit a ##, then reduce level and parse reste
+const parse = (txt) => {
+  const lines = txt.split("\n")
+  console.log(lines)
+
+  let title = lines[0]
+
+  let  text, children;
+
+  let chindx = txt.indexOf("##")
+  if (chindx === -1) {
+    return {title, text: txt.substr(title.length), children: []}
+  } else {
+    return {title, text: txt.substr(title.length, chindx), children: 
+      txt.substr(chindx).split("##").map(s => {
+        return parse("#" + s.replace("##", "#"))
+      })
+    
+    }
+  }
+  console.log(chindx)
+
+
+  return {
+    title, text, children
+  }
+}
+//#endregion
+
+//#region ut
+(() => {
+  console.log("tests")
+  const inpt = `# a header
+some
+markdown 
+
+parapraphs
+
+## subheader/prompts
+with more
+text 
+`
+
+  const output = parse(inpt)
+
+  console.log(output)
+
+})()
+//#endregion

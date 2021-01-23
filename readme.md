@@ -51,3 +51,49 @@ so here's what we have for now:
 - first thing is we're going to split out the js, and try to get those ui update undecontrol. there are a couple of things we can do make our exp a little more enjoyable once it's split up.
 - oh yeah, we're splitting it up just because things run a little more smoothly in vscode, but i still want the whole things to be a single html file, like the build/output at the end should be shippable in a single file.
 - so with a litte template literal we can havesyntax highlight in our js files. more tha tusual, with syntax for html literals. the perf hit shoudl be negligeable, and at worse, since they don't actually do aything, we could just remove all those html` before shipping...
+
+# parse/data/io
+so i'm going to do a pseudo markdown parse.
+the input doc format should be pretty simple. 
+```
+# a header
+some
+markdown 
+
+parapraphs
+
+## subheader/prompts
+with more
+text 
+
+and more 
+paragraphs
+
+### and their own prompt
+with test
+
+### another 
+asdsadasd
+
+## going back up
+with test always
+
+## or maybe no text
+### but prompts
+```
+
+this should be parse to the data structure:
+```js
+node = {
+    title: "",
+    text: "",
+    children: [nodes?]
+}
+```
+
+now that i think about it, change the data to always have children, just maybe null/empty
+
+as is tradition, lets make things more complicated than they need to be...
+
+so progress, but gotta eat. brb
+hopefullt
