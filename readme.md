@@ -41,3 +41,13 @@ it would be fun to abuse the templating...
 
 - somewhat working... very messy, but at least it's kinda working. 
 - we've reached the end of the commute, gotta get to wokr :( but the general approach is hard, the md parsing is a little annoying, and if we don't even know what data structre we need to get things to kinda work, there's not much to latch on to and we end up going in cirlces a little bit. we'll get to refactoring a little later. also imprgint the style a little does make things more motivating. 
+
+## review
+so here's what we have for now:
+- a consoleish window
+- some text and prompts
+- and being able to go up and down teh texts
+- it's very messy, but got us there. we're going to have to do a littl refactoring if we want to get to our next steps
+- first thing is we're going to split out the js, and try to get those ui update undecontrol. there are a couple of things we can do make our exp a little more enjoyable once it's split up.
+- oh yeah, we're splitting it up just because things run a little more smoothly in vscode, but i still want the whole things to be a single html file, like the build/output at the end should be shippable in a single file.
+- so with a litte template literal we can havesyntax highlight in our js files. more tha tusual, with syntax for html literals. the perf hit shoudl be negligeable, and at worse, since they don't actually do aything, we could just remove all those html` before shipping...
