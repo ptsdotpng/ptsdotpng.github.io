@@ -14,6 +14,7 @@
     ul {
       list-style: none;
     }
+
     /* #endregion */
     :root {
       --bg: #002b36;
@@ -117,7 +118,7 @@
 
     }
 
-
+    textarea, select, input, button { outline: none; }
     .bar {
       background-color: #000000;
       border-bottom: 1px solid var(--fg);
@@ -172,41 +173,101 @@ having a little fun away from it all
   const inpt = document.getElementById("prompt");
   const ptr = 0;
 
- 
+  const data = {
+    title: "( ._.)",
+    text: "welcome traveler",
+    children: [
+      {
+        title: "what is this?",
+        text: "this is my spot around these parts."
+      },
+      {
+        title: "who are you?",
+        text:`pts d. png. 
+the d is for dot. 
+nice to meet you`
+      },
+      {
+        title: "what are you doing here?",
+        text: `i'm just building some small project. 
+having a little fun away from it all
+        `
+      },
+    ]
+  }
 
+  
 
-  const lolwat = (c) => {
-    const [hh, ...ps] = c.split("\n##")
+  let trgt = data;
+  let prnt = [];
 
-    const [h, ...t] = hh.split("\n")
-
-    const ppp = ps.map(s => {
-      const [prmpt, ..._] = s.split("\n")
-      return `<li>> ${prmpt}</li>`
-    })
+  const print = (t) => {
+    const ps = t.hasOwnProperty("children") 
+      ? t.children.map(c => `<li> > ${c.title}</li>`).join("\n")
+      : `<li> > back</li>`
 
     return `
-      <h1>${h}</h1>
+      <h1>${t.title}</h1>
       <div class="ctnt">
-        ${t.join(`<br/>`)}
+        ${t.text}
       </div>
-      <ul>
-        ${ppp.join("\n")}
-      </ul>
+      <ol>
+        ${ps}
+      </ol>
     `;
   }
 
 
+  const printError = (t, prmpt) => {
+    output.innerHTML = `
+      <h1>${t.title}</h1>
+      <div class="ctnt">
+        i don't know: ${prmpt}<br/>
+        please pick from the list below
+      </div>
+      <ol>
+        ${t.children.map(c => `<li> > ${c.title}</li>`).join("\n")}
+      </ol>
+    `;
+
+  }
+ 
   const navTo = (prmpt) => {
-    console.log(prmpt)
+    if(prmpt === "back") {
+      if(prnt.length === 0) {
+
+      } else {
+        trgt = prnt.pop()
+        output.innerHTML = print(trgt)
+
+      }
+    }
+
+    const choices = trgt.children.map(c => c.title)
+
+    const idx = choices.indexOf(prmpt)
+
+    if(idx === -1) {
+      printError(trgt, prmpt);
+      return;
+    }
+
+    prnt.push(trgt);
+    trgt = trgt.children[idx]
+
+    output.innerHTML = print(trgt)
+
+
+
   }
 
-  output.innerHTML = lolwat(cnt)
+  output.innerHTML = print(trgt)
   inpt.focus()
 
   inpt.onkeyup = (e) => {
     if(e.key === "Enter") {
-      navTo(inpt.value)
+      navTo(inpt.value);
+      inpt.value = "";
     }
   }
 

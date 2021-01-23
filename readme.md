@@ -38,3 +38,6 @@ it would be fun to abuse the templating...
 
 - trying precommute stream...
 - going to change the strucutre. first get the whole things working, then figure out how to parse it from simple markdown
+
+- somewhat working... very messy, but at least it's kinda working. 
+- we've reached the end of the commute, gotta get to wokr :( but the general approach is hard, the md parsing is a little annoying, and if we don't even know what data structre we need to get things to kinda work, there's not much to latch on to and we end up going in cirlces a little bit. we'll get to refactoring a little later. also imprgint the style a little does make things more motivating. 
