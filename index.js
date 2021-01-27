@@ -47,8 +47,6 @@ const html = (strings, ...exprs) => {
   }, "");
 };
 
-
-
 // #endregion
 
 //#region main
@@ -60,9 +58,29 @@ const getChoices = t => {
     : [`back`]
 }
 
+const parse = (txt) => {
+  const lines = txt.split("\n")
+
+  let title = lines[0]
+
+  let chindx = txt.indexOf("##")
+  if (chindx === -1) {
+    return {title: title.substr(2), text: txt.substr(title.length), children: []}
+  } else {
+    return {title: title.substr(2), text: txt.substr(title.length, chindx - title.length).trim(),  children: 
+      txt.substr(chindx).split("##").map(s => {
+        if(s === "") return null
+        return parse("# " + s.trim().replace("##", "#"))
+      })
+      .filter(o => o !== null)
+    
+    }
+  }
+}
 
 // #endregion
 const main = (d) => {
+  // console.log(d)
   // #region init/state
   let trgt = d;
   let prnt = [];
@@ -71,10 +89,25 @@ const main = (d) => {
   const output = document.getElementById("output")
   // TODO: rename?
   const inpt = document.getElementById("prompt");
+
+  const about = document.getElementById("about")
   // #endregion
 
 
   // #region render
+  const renderAbout = (d) => {
+    about.innerHTML = html`
+        <h1>${d.title}</h1>
+        ${d.text}
+        ${d.children.map(c => html`
+          <h2>${c.title}</h2>
+          ${c.text}
+        `).join("\n")}
+      `
+  }
+  
+  renderAbout(d)
+
   const printOutput = (title, text, choices) => {
 
     output.innerHTML = html`
@@ -152,61 +185,5 @@ const main = (d) => {
 }
 
 // assumes it has the preparsed md -> data
-main(data);
-//#endregion
-
-//#region parser
-// regex is hard
-// lest jstu do it naively
-// expecting:
-// first line title
-// rest of text -> text
-// unless hit a ##, then reduce level and parse reste
-const parse = (txt) => {
-  const lines = txt.split("\n")
-  console.log(lines)
-
-  let title = lines[0]
-
-  let  text, children;
-
-  let chindx = txt.indexOf("##")
-  if (chindx === -1) {
-    return {title, text: txt.substr(title.length), children: []}
-  } else {
-    return {title, text: txt.substr(title.length, chindx), children: 
-      txt.substr(chindx).split("##").map(s => {
-        return parse("#" + s.replace("##", "#"))
-      })
-    
-    }
-  }
-  console.log(chindx)
-
-
-  return {
-    title, text, children
-  }
-}
-//#endregion
-
-//#region ut
-(() => {
-  console.log("tests")
-  const inpt = `# a header
-some
-markdown 
-
-parapraphs
-
-## subheader/prompts
-with more
-text 
-`
-
-  const output = parse(inpt)
-
-  console.log(output)
-
-})()
+main(parse(cnt));
 //#endregion
