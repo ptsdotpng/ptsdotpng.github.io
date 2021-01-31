@@ -97,3 +97,11 @@ as is tradition, lets make things more complicated than they need to be...
 
 so progress, but gotta eat. brb
 hopefullt
+
+# todo:
+- [ ] closable about window
+- [ ] parse script to codec fun times
+- [ ] typing sound effects
+- [ ] refactor all to single window codec
+- [ ] get background
+- [ ] playback/typeback controls

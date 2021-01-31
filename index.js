@@ -1,18 +1,8 @@
 //#region consts
-const cnt = `# ( ._.)
-welcome traveler.
+const cnt = `# welcome to pts'point.
+we are currently under construction.
 
-## what is this?
-this is my spot around these parts.
-
-## who are you?
-pts d. png. 
-the d is for dot. 
-nice to meet you
-
-## what are you doing here?
-i'm just building some small project. 
-having a little fun away from it all
+you can follow the latest developments on twitch at: https://www.twitch.tv/ptsdotpng 
 `
 // data should be parsable from the cnt
 const data = {
@@ -73,9 +63,49 @@ const parse = (txt) => {
         return parse("# " + s.trim().replace("##", "#"))
       })
       .filter(o => o !== null)
-    
     }
   }
+}
+
+const typer = (target) => {
+  const state = {
+    text: "",
+    currentPos: 0,
+    target: null, 
+    canceled: false
+  }
+
+  const type_time = 50;
+
+  const type = (text) => {
+    const el = document.querySelector(target);
+    state.text = text
+    state.currentPos = 0
+    state.canceled = false;
+    const t = () => {
+      if(text.length >= state.currentPos && !state.canceled) {
+        let l = state.text.charAt(state.currentPos++)
+        if(l === "\n") l = "<br/>"
+        el.innerHTML += l
+        setTimeout(t, type_time)
+      }
+    }
+    t()
+  }
+
+  return {
+    type, 
+    cancel: () => {
+      console.log("asdasd")
+      state.cancel = true
+    },
+  }
+}
+
+  let t = typer("#about");
+function cancel() {
+  console.log(13)
+  t.cancel()
 }
 
 // #endregion
@@ -85,6 +115,7 @@ const main = (d) => {
   let trgt = d;
   let prnt = [];
 
+
   // TODO: get more outpus -> text + options seperated
   const output = document.getElementById("output")
   // TODO: rename?
@@ -93,19 +124,14 @@ const main = (d) => {
   const about = document.getElementById("about")
   // #endregion
 
-
   // #region render
   const renderAbout = (d) => {
-    about.innerHTML = html`
-        <h1>${d.title}</h1>
-        ${d.text}
-        ${d.children.map(c => html`
-          <h2>${c.title}</h2>
-          ${c.text}
-        `).join("\n")}
-      `
+    about.innerHTML += html`
+      <div onclick="cancel()">cnacel</div>
+    `
+    t.type(cnt)
+
   }
-  
   renderAbout(d)
 
   const printOutput = (title, text, choices) => {
