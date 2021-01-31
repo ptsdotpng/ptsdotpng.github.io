@@ -1,0 +1,23 @@
+# todo
+- [x] create a todo
+- [x] import old todos
+- [x] get background
+- [x] cleanup old todos
+- [x] split readme and log
+- [ ] general
+    - [x] saner structure
+- [ ] script
+    - [ ] parse script to codec fun times
+- [ ] ui
+    - [ ] closable about window
+    - [ ] before closing - need to figure out what to close to -> close window then what?
+    - [ ] refactor all to single window codec
+- [ ] playback/typeback controls
+    - [ ] typing sound effects
+    - [ ] complex playback -> parse md/whatever a little - create and nav through nodes -> detect #, create h1, and type in that
+- [ ] 
+- [ ]
+- [ ]
+- [ ]
+- [ ]
+- [ ]
