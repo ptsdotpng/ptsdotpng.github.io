@@ -105,3 +105,4 @@ hopefullt
 - [ ] refactor all to single window codec
 - [ ] get background
 - [ ] playback/typeback controls
+- [ ] complex playback -> parse md/whatever a little - create and nav through nodes -> detect #, create h1, and type in that

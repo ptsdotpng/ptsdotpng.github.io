@@ -17,7 +17,6 @@
 
     /* #endregion */
     :root {
-
       --fg: 	#E8DFD6;
       --bg: 	#021B21;
       --curs:  #2E3340;
@@ -37,11 +36,12 @@
       --c14:      #9ED9D8;
       --c7:       #F2F1B9;
       --c15:      #F6F6C9;
+      --ff: scientifica;
     }
 
     /* #region typo */
     html {
-      font-family: scientifica;
+      font-family: var(--ff);
       background-image: url("brijan.gif");
       color: var(--fg);
       font-size: 16px;
@@ -114,10 +114,44 @@
       max-height: 100vh;
       max-width: 100vw;
     }
+
     body {
       min-height: 100vh;
-      width: 600px;
-      margin: 0 auto;
+      min-width: 100vw;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #top-bar, #bot-bar{
+      background-color: rgba(0, 0, 0, 0.5);
+      width: 100%;
+      padding: 10px 20px;
+      align-items: center;
+      justify-content: center;
+    }
+
+
+    #desktop {
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: row;
+      width: 100%;
+    }
+
+    .win {
+      border: 1px solid rgba(255, 255, 255, 0.75);
+      background-color:rgba(0, 0, 0, 0.5);
+      margin: 10px;
+      padding: 25px;
+      flex-grow: 1;
+      height: 100%;
+      flex: 1;
+      font-size: 26px;
+      overflow: scroll;
     }
 
     header {
@@ -189,19 +223,25 @@
 
     }
 
+
+
+
+
   </style>
 </head>
 <body>
-  <div id="about" class="popup"></div>
-  <div class="console">
-    <div class="bar">
-      <div class="btns">⬤⬤⬤</div>
-      <div class="title">cnsl</div>
-    </div>
-    <div id="output" class="output">   
-    </div>
-    <input id="prompt">
+<div id="top-bar">
+  <div id="win-name"></div>
+  <div id="clock">20:22</div>
+</div>
+<div id="desktop">
+  <div class="win term" id="intro">
+
   </div>
+</div>
+<div id="bot-bar">
+
+</div>
 </body>
 <script src="index.js"></script>
 </html>

@@ -75,7 +75,7 @@ const typer = (target) => {
     canceled: false
   }
 
-  const type_time = 50;
+  const type_time = 35;
 
   const type = (text) => {
     const el = document.querySelector(target);
@@ -102,11 +102,8 @@ const typer = (target) => {
   }
 }
 
-  let t = typer("#about");
-function cancel() {
-  console.log(13)
-  t.cancel()
-}
+
+
 
 // #endregion
 const main = (d) => {
@@ -119,7 +116,7 @@ const main = (d) => {
   // TODO: get more outpus -> text + options seperated
   const output = document.getElementById("output")
   // TODO: rename?
-  const inpt = document.getElementById("prompt");
+  // const inpt = document.getElementById("prompt");
 
   const about = document.getElementById("about")
   // #endregion
@@ -211,5 +208,32 @@ const main = (d) => {
 }
 
 // assumes it has the preparsed md -> data
-main(parse(cnt));
+// main(parse(cnt));
 //#endregion
+
+const intro = `# hello there
+( ._.)
+welcome to my little spot on the 'net.
+this site is still under construction.
+
+you can follow the progress o twitch at twitch.tv/ptsdotpng
+
+i'll be streaming the whole creation progress. you can also find the up to date (if i remember to push ._.) code on github at github.com/ptsdotpng
+
+we're still figuring things out but we're having a bunch (yeah, a bunch i guess ._.) of fun while doing it. 
+
+our current main concenrs include:
+- streaming
+- coding
+- streaming about coding
+- coding about streaming
+- web stuff
+- overcomplicated js
+- unix customizing
+- a e s t h e t i c s
+
+tune in whenever, the stream schedule is still a bit inconsistent. as i start getting it, i'll find somewhere to put all those recorded sessions.
+`
+
+let t = typer("#intro");
+t.type(intro)
